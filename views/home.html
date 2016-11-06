@@ -1,0 +1,150 @@
+<div class="row">
+	<div class="col-xs-12">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Configure Chart
+				</div>
+			</div>
+			<div class="panel-body">
+
+				<form>
+
+					<div class="form-group col-xs-12" >
+						<label class="control-label" >Chart Title</label>						
+						<input type="text" id="tour-0" class="form-control"  ng-model="chart.options.title.text" placeholder="Name your chart">
+						
+					</div>
+					<div class="form-group col-xs-12">
+						<label class="control-label" >Dataset Title</label>						
+						<input type="text" id="tour-1" class="form-control" ng-model="chart.data.datasets[0].label" placeholder="Name your dataset">
+						
+					</div>
+					<div class="form-group col-xs-12">
+						<label class="control-label" >Description</label>						
+						<textarea ng-model="chart.description" id="tour-2" class="form-control" ng-model="chart.description" placeholder="Name your dataset"></textarea>
+						
+					</div>
+					<div class="form-group col-xs-12 col-sm-6 ">
+						<label class="control-label" >Label Presets 	</label>
+						<select ng-model="ui.selected_preset" id="tour-3" ng-change="labelPresetSelected()" ng-options="set as set.title for set in ui.label_presets" class="form-control"></select>
+					</div>
+					<div class="form-group col-xs-12 col-sm-6">
+						<label class="control-label">Add Label</label>
+						<div class="input-group">
+							<input type="text" class="form-control" ng-model="ui.new_label" placeholder="Add a label for your chart">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" ng-click="addLabel()">Add</button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group col-xs-12">
+						<label class="control-label">Type</label>
+						<select ng-model="chart.type" ng-options="type as type for type in ui.chart_types" class="form-control"></select>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-info" ng-if="chart.data.labels.length">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Customise Data
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					
+					<table class="table table-striped table-bordered table-hover" id="tour-4">
+						<thead>
+							<tr>
+								<td>
+									Label
+								</td>
+								<td>
+									Value
+								</td>
+								<td>
+									Fill
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="label in chart.data.labels track by $index">
+								<td>
+									{{label}}
+								</td>
+								<td>
+									<input class="form-control" type="number" ng-model="chart.data.datasets[0].data[$index]">
+								</td>
+								<td>
+									<spectrum-colorpicker
+										ng-init="chart.data.datasets[0].backgroundColor[$index] = ui.default_fill" 
+										ng-model="chart.data.datasets[0].backgroundColor[$index]" 
+										format="'rgb'"
+										options="{
+											showAlpha: true
+										}">
+											
+									</spectrum-colorpicker>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>		
+			</div>
+			<div class="panel-footer">
+  				<button class="btn btn-primary" ng-click="render()" id="tour-5">Render</button>
+				
+			</div>
+		</div>
+		
+
+		
+
+		
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Your Chart
+				</div>
+			</div>
+			<div class="panel-body">
+				<canvas id="chart"></canvas>
+				<p>
+					{{chart.description}}
+				</p>
+			</div>
+			<div class="panel-footer">
+				<button ng-click="save()" class="btn btn-primary">Save</button>								
+			</div>
+		</div>
+	</div>
+</div>
+
+<tour step="tourstep" ng-init="tourstep = 0">
+  <span tourtip="First, let's give our chart a title" tourtip-step="0" tourtip-element="#tour-0" tourtip-placement="bottom" on-proceed="chart.options.title.text = 'My First Chart' "></span>
+  <span tourtip="Now let's give a title to our dataset" tourtip-step="1" tourtip-element="#tour-1" tourtip-placement="bottom" on-proceed="chart.data.datasets[0].label = 'Miles walked each day' "></span>
+  <span tourtip="Let's give a brief description on what the chart is about" tourtip-step="2" tourtip-element="#tour-2" tourtip-placement="bottom" on-proceed="chart.description = 'This chart shows how many miles I have walked each day this week.' "></span>
+  <span tourtip="Let's use a label preset, this allows us to quickly populate the chart with days of the week" tourtip-step="3" tourtip-element="#tour-3" tourtip-placement="bottom" on-proceed="ui.selected_preset = ui.label_presets.day_of_week; labelPresetSelected();"></span>
+  <span tourtip="Now we have some data to play with, we'll populate this now to save time" tourtip-step="4" tourtip-element="#tour-4" tourtip-placement="top" 
+  	on-proceed="
+  		chart.data.datasets[0].data[0] = 1;
+  		chart.data.datasets[0].data[1] = 3;
+  		chart.data.datasets[0].data[2] = 2;
+  		chart.data.datasets[0].data[3] = 8;
+  		chart.data.datasets[0].data[4] = 3;
+  		chart.data.datasets[0].data[5] = 4;
+  		chart.data.datasets[0].data[6] = 1;
+  	">
+  	</span>
+  	<span tourtip="Now we're ready to see our chart. Let's render it!" tourtip-step="5" tourtip-element="#tour-5" tourtip-placement="bottom" on-proceed="render();"></span>
+  	<span tourtip="Now we have our chart!" tourtip-step="6" tourtip-element="#chart" tourtip-placement="top"></span>
+</tour>

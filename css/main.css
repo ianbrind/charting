@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "Montserrat";
+	src: url("./fonts/Montserrat-Regular.ttf") format("opentype");   
+}
+
+body {
+	background-color: #F5F5F5;
+	padding-top: 50px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.menu-buttons div[class*='col'] {
+	margin-bottom: 2em;
+}
+.menu-buttons div[class*='col'] > button {
+	padding: 18px;
+	background-color: rgb(51,122,183);
+}
+.menu-buttons div[class*='col'] > button > p {
+	font-size: 20px;
+	margin-top: 5px;
+	color: #fff;
+}
+
+.tour-tip {
+	z-index: 200;
+}
+.tour-backdrop ~ .tour-backdrop {
+  display: none;
+}
+
+button.tour-element-active { 
+	
+	background: null; /*Quick hack to stop the tour turning buttons white when active*/
+}
