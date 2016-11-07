@@ -67,6 +67,9 @@
 								<td>
 									Fill
 								</td>
+								<td>
+									Delete
+								</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -87,6 +90,9 @@
 										}">
 											
 									</spectrum-colorpicker>
+								</td>
+								<td>
+									<button class="btn btn-warning btn-sm btn-block" ng-click="removeLabel($index)">Delete</button>
 								</td>
 
 							</tr>
@@ -128,7 +134,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- 
 <tour step="tourstep" ng-init="tourstep = 0">
   <span tourtip="First, let's give our chart a title" tourtip-step="0" tourtip-element="#tour-0" tourtip-placement="bottom" on-proceed="chart.options.title.text = 'My First Chart' "></span>
   <span tourtip="Now let's give a title to our dataset" tourtip-step="1" tourtip-element="#tour-1" tourtip-placement="bottom" on-proceed="chart.data.datasets[0].label = 'Miles walked each day' "></span>
@@ -147,4 +153,4 @@
   	</span>
   	<span tourtip="Now we're ready to see our chart. Let's render it!" tourtip-step="5" tourtip-element="#tour-5" tourtip-placement="bottom" on-proceed="render();"></span>
   	<span tourtip="Now we have our chart!" tourtip-step="6" tourtip-element="#chart" tourtip-placement="top"></span>
-</tour>
+</tour> -->

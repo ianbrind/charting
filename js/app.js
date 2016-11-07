@@ -145,7 +145,17 @@
 
 				var dom_canvas = $("#chart")[0];
 				var dom_ctx = dom_canvas.getContext("2d");
-				var chart = null;	
+				var chart = null;
+
+				//Remove the label and all of the data points and properties associated with
+				//that label
+				$scope.removeLabel = function (index) {
+					var data = $scope.chart.data; 
+					data.datasets[0].data.splice(index, 1);
+					data.datasets[0].backgroundColor.splice(index, 1);
+					data.labels.splice(index, 1);
+				};	
+
 				$scope.chart = {
 					description: "",
 					type: "bar",
@@ -217,6 +227,8 @@
 					//Clear the preset
 					$scope.ui.selected_preset = null;
 				};
+
+				
 
 				$scope.addLabel = function () {
 					
