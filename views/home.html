@@ -46,16 +46,17 @@
 				</form>
 			</div>
 		</div>
-		<div class="panel panel-info" ng-if="chart.data.labels.length">
+		<div class="panel panel-info" ng-show="chart.data.labels.length">
 			<div class="panel-heading">
 				<div class="panel-title">
 					Customise Data
 				</div>
 			</div>
 			<div class="panel-body">
+
 				<div class="table-responsive">
-					
-					<table class="table table-striped table-bordered table-hover" id="tour-4">
+				
+					<table class="table table-striped table-bordered table-hover" id="tour-4" >
 						<thead>
 							<tr>
 								<td>
@@ -72,8 +73,9 @@
 								</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr ng-repeat="label in chart.data.labels track by $index">
+						<tbody  ui-sortable="sortableOptions" ng-model="chart.data.labels">
+						
+							<tr ng-repeat="label in chart.data.labels">
 								<td>
 									{{label}}
 								</td>
@@ -96,6 +98,7 @@
 								</td>
 
 							</tr>
+							
 						</tbody>
 					</table>
 					

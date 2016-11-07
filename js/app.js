@@ -8,7 +8,8 @@
 		angular.module("app", [
 			"ui.router",
 			"angularSpectrumColorpicker",
-			"angular-tour"
+			"angular-tour",
+			"ui.sortable"
 		]);
 
 		angular.module("app")
@@ -147,15 +148,17 @@
 				var dom_ctx = dom_canvas.getContext("2d");
 				var chart = null;
 
-				//Remove the label and all of the data points and properties associated with
-				//that label
-				$scope.removeLabel = function (index) {
-					var data = $scope.chart.data; 
-					data.datasets[0].data.splice(index, 1);
-					data.datasets[0].backgroundColor.splice(index, 1);
-					data.labels.splice(index, 1);
-				};	
-
+				
+				$scope.sortableOptions = {
+				  update: function(e, ui, x) {
+				  	console.log(e);
+				  	console.log(ui);
+				  	console.log(x);
+				    if (ui.item.sortable.model == "can't be moved") {
+				      ui.item.sortable.cancel();
+				    }
+				  }
+				};
 				$scope.chart = {
 					description: "",
 					type: "bar",
@@ -228,7 +231,14 @@
 					$scope.ui.selected_preset = null;
 				};
 
-				
+				//Remove the label and all of the data points and properties associated with
+				//that label
+				$scope.removeLabel = function (index) {
+					var data = $scope.chart.data; 
+					data.datasets[0].data.splice(index, 1);
+					data.datasets[0].backgroundColor.splice(index, 1);
+					data.labels.splice(index, 1);
+				};		
 
 				$scope.addLabel = function () {
 					
