@@ -1,0 +1,15 @@
+Features:
+
+	1. Label Presets 
+
+	Choose from a selection of in-built label presets such as "Day of week" and "Months in year",
+	add to this selection of presets by creating your own. 
+
+	2. Tutorial
+
+	Follow our tutorial to get you creating charts in no time.
+
+	3. 5 Chart Types
+
+	Choose from Vertical Bar, Horizontal Bar, Line, Pie, Dohnut, Polar Area  chart types.
+
