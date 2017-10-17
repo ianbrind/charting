@@ -1,9 +1,10 @@
 // $(function () {
+	console.log("angular");
 	
 	"use strict";
 
 	//Define Angular app
-	(function () {
+	// (function () {
 
 		angular.module("app", [
 			"ui.router",
@@ -107,9 +108,9 @@
 					}
 				}
 			})
-	})();
+	// })();
 
-	(function () {
+	// (function () {
 
 		angular.module("app")
 			.service("StorageSvc", function () {
@@ -148,17 +149,8 @@
 				var dom_ctx = dom_canvas.getContext("2d");
 				var chart = null;
 
+
 				
-				$scope.sortableOptions = {
-				  update: function(e, ui, x) {
-				  	console.log(e);
-				  	console.log(ui);
-				  	console.log(x);
-				    if (ui.item.sortable.model == "can't be moved") {
-				      ui.item.sortable.cancel();
-				    }
-				  }
-				};
 				$scope.chart = {
 					description: "",
 					type: "bar",
@@ -195,6 +187,28 @@
 					}
 					
 				}
+
+				// (function () {
+
+					$scope.sortableOptions = {
+
+						stop: function (x, y, z) {
+					  	
+					  		console.log("stop")
+					  		console.log($scope.chart.data)
+
+						},
+					  	start: function (x, y, z) {
+
+					  		console.log($scope.chart.data)
+
+					  		previous_order = $scope.chart.data.labels;
+					  		for(var i = 0, max = $scope.chart.data.labels.length; i < max; i++) {
+
+					  		}
+						}
+					};
+				// })();
 				
 				$scope.ui = {
 					new_label: "",
@@ -272,5 +286,5 @@
 				};
 			});
 		
-	})();
-// });
+	// })();
+ // });

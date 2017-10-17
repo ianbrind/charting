@@ -75,7 +75,7 @@
 						</thead>
 						<tbody  ui-sortable="sortableOptions" ng-model="chart.data.labels">
 						
-							<tr ng-repeat="label in chart.data.labels">
+							<tr ng-repeat="label in chart.data.labels track by $index">
 								<td>
 									{{label}}
 								</td>
